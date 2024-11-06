@@ -1,7 +1,7 @@
 Deployment model{
     applications {
         ->  name: app1,
-            image: "fitash19/dpp:1.0.0",
+            image: "fitash19/dpp:1.0.10",
             port: 8000,
             cpu_required: 10m, 
             memory_required: 100Mi, 
@@ -44,15 +44,6 @@ Deployment model{
             regions: [us-east],
             net_config: True
 
-        ->  public_cluster
-            name: cluster2,
-            number_of_nodes: 3,
-            provider: aws,
-            config_file: "config_aws.conf",
-            services: [service1],
-            deployments: [deployment1],
-            regions: [us-east],
-            net_config: True
     }
     }
 }

@@ -5,15 +5,15 @@ from besser.generators.backend import BackendGenerator
 from besser.generators.terraform import TerraformGenerator
 
 # Structural model
-dpp_buml: DomainModel = plantuml_to_buml(plantUML_model_path='dpp.plantuml')
+dpp_buml: DomainModel = plantuml_to_buml(plantUML_model_path='library.plantuml')
 
 # Docker image and backend code generation
 backend_generator = BackendGenerator(model=dpp_buml, docker_image=True, docker_config_path="config_docker.conf")
 backend_generator.generate()
 
-# # Deployment architecture model
-# deployment_model = buml_deployment_model(deployment_textfile="deployment.txt")
-#
-# # Terraform code generation
-# terraform_generator = TerraformGenerator(deployment_model=deployment_model)
-# terraform_generator.generate()
+# Deployment architecture model
+deployment_model = buml_deployment_model(deployment_textfile="deployment.txt")
+
+# Terraform code generation
+terraform_generator = TerraformGenerator(deployment_model=deployment_model,output_dir='output')
+terraform_generator.generate()
